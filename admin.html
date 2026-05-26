@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExamPulse AI | Administrative Control Center</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Admin Specific Styling Tokens (Premium Green Accent) */
+    :root {
+      --brand-primary: #10b981;
+      --brand-primary-rgb: 16, 185, 129;
+      --border-focus: rgba(16, 185, 129, 0.4);
+    }
+    
+    .admin-logo-icon {
+      background: linear-gradient(135deg, var(--brand-primary), #059669) !important;
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3) !important;
+    }
+
+    /* Dense Form Factors for Admin Fields */
+    .admin-form-group input, 
+    .admin-form-group select, 
+    .admin-form-group textarea {
+      font-size: 0.82rem !important;
+      padding: 0.5rem 0.75rem !important;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 0.375rem;
+      color: var(--text-primary);
+      width: 100%;
+    }
+
+    .admin-form-group label {
+      font-size: 0.75rem !important;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .admin-stat-card {
+      border-left: 4px solid var(--brand-primary);
+    }
+
+    .admin-side-btn.active {
+      background: rgba(16, 185, 129, 0.1) !important;
+      color: var(--brand-primary) !important;
+      border: 1px solid rgba(16, 185, 129, 0.25) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- --- HEADER --- -->
+    <header>
+      <div class="container header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-icon admin-logo-icon">🛡️</div>
+          ExamPulse <span class="logo-tag" style="color: var(--brand-primary);">ADMIN</span>
+        </a>
+        <div class="header-actions">
+          <a href="index.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">➔ Back to Student Portal</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="admin-layout-grid">
+        <!-- Sidebar Navigation -->
+        <div class="admin-sidebar">
+          <h4 class="sidebar-title">Admin Management</h4>
+          <button class="admin-side-btn active" data-sub="stats">📊 Dashboard Stats</button>
+          <button class="admin-side-btn" data-sub="create">➕ Add Question</button>
+          <button class="admin-side-btn" data-sub="bulk">📥 Bulk Upload</button>
+          <button class="admin-side-btn" data-sub="users">👥 User Controls</button>
+        </div>
+
+        <!-- Dashboard Viewport -->
+        <div class="admin-content-viewport">
+          
+          <!-- View 1: Stats & Overview -->
+          <div class="admin-sub-view active" id="admin-sub-stats">
+            <div class="admin-stats-grid">
+              <div class="admin-stat-card">
+                <h5>Active Concurrent Users</h5>
+                <h2 style="color: var(--brand-success);" id="admin-stat-concurrent">14,205</h2>
+              </div>
+              <div class="admin-stat-card">
+                <h5>Total Global Practices</h5>
+                <h2 id="admin-stat-practices">1,205,842</h2>
+              </div>
+              <div class="admin-stat-card">
+                <h5>Platform Income Mode</h5>
+                <h2 style="color: var(--brand-warning);">FREE ONLY</h2>
+              </div>
+              <div class="admin-stat-card">
+                <h5>Active Question Bank</h5>
+                <h2 style="color: #6366f1;" id="admin-stat-questions">26</h2>
+              </div>
+            </div>
+
+            <div class="admin-card-container">
+              <h3 style="margin-bottom: 1.25rem; font-size: 1.1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Subject Popularity Distribution</h3>
+              <div id="admin-category-popularity-bars">
+                <!-- progress counts dynamically load here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- View 2: Add single PYQ question -->
+          <div class="admin-sub-view" id="admin-sub-create">
+            <div class="admin-card-container">
+              <h3 style="margin-bottom: 1.25rem; font-size: 1.1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Create Verified exam-oriented PYQ</h3>
+              
+              <form id="admin-add-question-form">
+                <div class="admin-form-row-grid">
+                  <div class="admin-form-group">
+                    <label>Category *</label>
+                    <select name="category" required>
+                      <option value="Reasoning">Reasoning</option>
+                      <option value="Aptitude">Aptitude</option>
+                      <option value="History">History</option>
+                      <option value="Geography">Geography</option>
+                      <option value="Polity">Polity</option>
+                      <option value="Economics">Economics</option>
+                      <option value="Science">Science</option>
+                      <option value="Current Affairs">Current Affairs</option>
+                    </select>
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Subtopic Tag *</label>
+                    <input type="text" name="tag" placeholder="e.g. Percentage, Blood Relations" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Difficulty *</label>
+                    <select name="difficulty">
+                      <option value="Easy">Easy</option>
+                      <option value="Medium" selected>Medium</option>
+                      <option value="Hard">Hard</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="admin-form-group" style="margin: 1rem 0;">
+                  <label>Question Content *</label>
+                  <textarea name="question" rows="3" placeholder="Enter complete exam question..." required></textarea>
+                </div>
+
+                <div class="admin-form-row-grid" style="margin-bottom: 1rem;">
+                  <div class="admin-form-group">
+                    <label>Option A *</label>
+                    <input type="text" name="optA" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Option B *</label>
+                    <input type="text" name="optB" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Option C *</label>
+                    <input type="text" name="optC" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Option D *</label>
+                    <input type="text" name="optD" required>
+                  </div>
+                </div>
+
+                <div class="admin-form-row-grid" style="margin-bottom: 1rem;">
+                  <div class="admin-form-group">
+                    <label>Correct Answer Index *</label>
+                    <select name="correctIdx" required>
+                      <option value="0">Option A</option>
+                      <option value="1">Option B</option>
+                      <option value="2">Option C</option>
+                      <option value="3">Option D</option>
+                    </select>
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Previous Year Exam Source *</label>
+                    <input type="text" name="source" placeholder="e.g. SSC CGL 2023, UPSC CSE 2021" required>
+                  </div>
+                </div>
+
+                <div class="admin-form-group" style="margin-bottom: 1rem;">
+                  <label>Verified RAG Explanation *</label>
+                  <textarea name="explanation" rows="3" placeholder="Explain the correct answer logic..." required></textarea>
+                </div>
+
+                <div class="admin-form-row-grid" style="margin-bottom: 1.25rem;">
+                  <div class="admin-form-group">
+                    <label>Core Concept</label>
+                    <input type="text" name="concept">
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Shortcut Formula (Optional)</label>
+                    <input type="text" name="shortcut">
+                  </div>
+                  <div class="admin-form-group">
+                    <label>Key Takeaway Badge</label>
+                    <input type="text" name="takeaway">
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.5rem 1.5rem;">Save to Question Pool</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- View 3: Bulk JSON array parser -->
+          <div class="admin-sub-view" id="admin-sub-bulk">
+            <div class="admin-card-container">
+              <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Bulk Upload JSON Questions</h3>
+              <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1.25rem;">Instantly parsed and injected into shared LocalStorage databases.</p>
+              
+              <div class="admin-form-group" style="margin-bottom: 1rem;">
+                <label>JSON Array Format</label>
+                <textarea class="bulk-textarea" id="admin-bulk-input" style="height: 220px;" placeholder='[
+  {
+    "category": "History",
+    "tag": "Ancient History",
+    "question": "Example Question Text?",
+    "options": ["A", "B", "C", "D"],
+    "correctOptionIndex": 1,
+    "explanation": "Detailed explanation...",
+    "concept": "Core Concept",
+    "source": "SSC CGL 2023",
+    "difficulty": "Easy"
+  }
+]'></textarea>
+              </div>
+
+              <button class="btn btn-primary" id="admin-bulk-submit-btn" style="font-size: 0.8rem; padding: 0.5rem 1.5rem;">Parse & Bulk Load Array</button>
+            </div>
+          </div>
+
+          <!-- View 4: Student Control Center -->
+          <div class="admin-sub-view" id="admin-sub-users">
+            <div class="admin-card-container">
+              <h3 style="margin-bottom: 1.25rem; font-size: 1.1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Aspirants & Session User Control</h3>
+              
+              <div class="admin-table-wrapper">
+                <table class="admin-table" style="font-size: 0.8rem;">
+                  <thead>
+                    <tr>
+                      <th>Aspirant Username</th>
+                      <th>Category Target</th>
+                      <th>Account Detail</th>
+                      <th>Global Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-users-table-body">
+                    <!-- Prepend live session student and simulated tables -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <footer style="background: #04070e; border-top: 1px solid var(--border-color); padding: 1.5rem 0; text-align: center; font-size: 0.75rem; color: var(--text-muted);">
+      &copy; 2026 ExamPulse AI. Administrative Portal (admin.exampulse.ai). Secure Sandboxed Session database.
+    </footer>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="engines.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Engine state
+      window.ExamPulse.init();
+      const Engine = window.ExamPulse;
+
+      const els = {
+        adminSideBtns: document.querySelectorAll('.admin-sidebar .admin-side-btn'),
+        adminSubViews: document.querySelectorAll('.admin-sub-view'),
+        adminStatConcurrent: document.getElementById('admin-stat-concurrent'),
+        adminStatPractices: document.getElementById('admin-stat-practices'),
+        adminStatQuestionsCount: document.getElementById('admin-stat-questions'),
+        adminCategoryPopularity: document.getElementById('admin-category-popularity-bars'),
+        adminAddForm: document.getElementById('admin-add-question-form'),
+        adminBulkInput: document.getElementById('admin-bulk-input'),
+        adminBulkBtn: document.getElementById('admin-bulk-submit-btn'),
+        adminUsersTable: document.getElementById('admin-users-table-body')
+      };
+
+      let activeAdminSubView = 'stats';
+
+
+
+      // Navigation routing
+      els.adminSideBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          els.adminSideBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeAdminSubView = btn.dataset.sub;
+          updateAdminDashboard();
+        });
+      });
+
+      function updateAdminSubRouting() {
+        els.adminSubViews.forEach(view => {
+          view.classList.remove('active');
+          if (view.id === `admin-sub-${activeAdminSubView}`) {
+            view.classList.add('active');
+          }
+        });
+      }
+
+      function updateAdminDashboard() {
+        updateAdminSubRouting();
+        
+        const adm = Engine.getAdminStats();
+        
+        els.adminStatConcurrent.textContent = adm.activeUsers.toLocaleString();
+        els.adminStatPractices.textContent = adm.totalAnsweredGlobal.toLocaleString();
+        
+        const db = [...window.ExamPulseData.questions, ...Engine.state.customQuestions];
+        els.adminStatQuestionsCount.textContent = db.length;
+
+        // Categories graph list
+        els.adminCategoryPopularity.innerHTML = '';
+        Object.entries(adm.categoryPopularity).forEach(([cat, val]) => {
+          const maxVal = Math.max(...Object.values(adm.categoryPopularity));
+          const pct = maxVal > 0 ? Math.round((val / maxVal) * 100) : 0;
+          
+          const item = document.createElement('div');
+          item.className = 'cat-bar-item';
+          item.style.marginBottom = '0.85rem';
+          item.innerHTML = `
+            <div class="cat-bar-meta" style="font-size: 0.75rem;">
+              <span><strong>${cat}</strong></span>
+              <span class="cat-counts" style="color: var(--text-muted);">${val} Questions Seeded</span>
+            </div>
+            <div class="cat-progress-track" style="height: 0.4rem;">
+              <div class="cat-progress-fill" style="width: ${pct}%; background: linear-gradient(90deg, var(--brand-primary), #6366f1);"></div>
+            </div>
+          `;
+          els.adminCategoryPopularity.appendChild(item);
+        });
+
+        // Users lists rendering
+        els.adminUsersTable.innerHTML = '';
+        
+        // Dynamic Live signed-in Student
+        if (Engine.state.user) {
+          const actualUser = Engine.state.user;
+          const isSuspended = actualUser.suspended === true;
+          const row = document.createElement('tr');
+          row.style.background = 'rgba(16, 185, 129, 0.06)';
+          row.innerHTML = `
+            <td><strong>${actualUser.username} <span style="color: var(--brand-primary); font-size: 0.7rem;">(You)</span></strong></td>
+            <td><span class="badge badge-easy" style="background: rgba(16,185,129,0.05); color: var(--brand-primary); border-color: rgba(16,185,129,0.25);">Practice Mode</span></td>
+            <td style="color: var(--text-secondary);">Active Session Student</td>
+            <td><span class="badge ${isSuspended ? 'badge-hard' : 'badge-easy'}" id="current-user-status">${isSuspended ? 'Suspended' : 'Active'}</span></td>
+            <td>
+              <button class="btn btn-secondary btn-sm" id="btn-current-user-suspend" style="padding: 0.2rem 0.4rem; font-size: 0.75rem; background: var(--bg-input); color: ${isSuspended ? 'var(--brand-success)' : ''};">
+                ${isSuspended ? 'Reactivate' : 'Suspend'}
+              </button>
+            </td>
+          `;
+
+          const suspendBtn = row.querySelector('#btn-current-user-suspend');
+          const statusBadge = row.querySelector('#current-user-status');
+          suspendBtn.addEventListener('click', () => {
+            const currentlySuspended = Engine.state.user.suspended === true;
+            const targetStatus = !currentlySuspended;
+            
+            Engine.toggleUserSuspension(targetStatus);
+
+            if (targetStatus) {
+              suspendBtn.textContent = 'Reactivate';
+              suspendBtn.style.color = 'var(--brand-success)';
+              statusBadge.textContent = 'Suspended';
+              statusBadge.className = 'badge badge-hard';
+            } else {
+              suspendBtn.textContent = 'Suspend';
+              suspendBtn.style.color = '';
+              statusBadge.textContent = 'Active';
+              statusBadge.className = 'badge badge-easy';
+            }
+          });
+          els.adminUsersTable.appendChild(row);
+        }
+
+        // Simulated Virtual candidates
+        Engine.virtualUsers.forEach((vu, idx) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td><strong>${vu.name}</strong></td>
+            <td><span class="badge badge-easy" style="background: rgba(255,255,255,0.03); color: var(--text-secondary);">${vu.category}</span></td>
+            <td style="color: var(--text-muted);">Simulated Candidate</td>
+            <td><span class="badge badge-easy" id="user-status-${idx}">Active</span></td>
+            <td>
+              <button class="btn btn-secondary btn-sm" id="btn-user-suspend-${idx}" style="padding: 0.2rem 0.4rem; font-size: 0.75rem; background: var(--bg-input);">Suspend</button>
+            </td>
+          `;
+
+          const suspendBtn = row.querySelector(`#btn-user-suspend-${idx}`);
+          const statusBadge = row.querySelector(`#user-status-${idx}`);
+          suspendBtn.addEventListener('click', () => {
+            if (suspendBtn.textContent === 'Suspend') {
+              suspendBtn.textContent = 'Reactivate';
+              suspendBtn.style.color = 'var(--brand-success)';
+              statusBadge.textContent = 'Suspended';
+              statusBadge.className = 'badge badge-hard';
+            } else {
+              suspendBtn.textContent = 'Suspend';
+              suspendBtn.style.color = '';
+              statusBadge.textContent = 'Active';
+              statusBadge.className = 'badge badge-easy';
+            }
+          });
+
+          els.adminUsersTable.appendChild(row);
+        });
+      }
+
+      // Add verified question form submit
+      els.adminAddForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fd = new FormData(els.adminAddForm);
+        const qData = {};
+        fd.forEach((val, key) => { qData[key] = val; });
+
+        Engine.addNewQuestion(qData);
+        alert('Question added successfully to shared memory bank!');
+        els.adminAddForm.reset();
+      });
+
+      // Bulk Upload parse & submit
+      els.adminBulkBtn.addEventListener('click', () => {
+        const text = els.adminBulkInput.value.trim();
+        if (text) {
+          const res = Engine.bulkUploadQuestions(text);
+          if (res.success) {
+            alert(`Parsed successfully. Loaded ${res.count} custom questions to the shared database!`);
+            els.adminBulkInput.value = '';
+            activeAdminSubView = 'stats';
+            updateAdminDashboard();
+          } else {
+            alert(`Failed parsing: ${res.error}`);
+          }
+        }
+      });
+
+      // Init dashboard load
+      updateAdminDashboard();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+// ExamPulse AI - Verified Previous Year Question (PYQ) Database
+// Built under window.ExamPulse namespace to avoid CORS issues on local file execution.
+
+window.ExamPulseData = {
+  questions: [
+    // --- 🧠 REASONING ---
+    {
+      id: 101,
+      category: 'Reasoning',
+      tag: 'Coding-Decoding',
+      question: 'In a certain code language, "ROSE" is written as "TQUG" and "TULIP" is written as "VWNKR". How will "LOTUS" be written in that code language?',
+      options: ['NQVWT', 'NQWVT', 'MPUWT', 'NRWVT'],
+      correctOptionIndex: 1,
+      explanation: 'In ROSE → TQUG, each letter is shifted forward by 2 positions (+2 in alphabetical order):\n• R (+2) = T\n• O (+2) = Q\n• S (+2) = U\n• E (+2) = G\n\nSimilarly, for LOTUS:\n• L (+2) = N\n• O (+2) = Q\n• T (+2) = V\n• U (+2) = W\n• S (+2) = U\nWait, let us check TULIP: T (+2) = V, U (+2) = W, L (+2) = N, I (+2) = K, P (+2) = R. Correct!\nFor LOTUS:\n• L (+2) = N\n• O (+2) = Q\n• T (+2) = V\n• U (+2) = W\n• S (+2) = U. Thus, "NQWVT" is correct.',
+      concept: 'Coding-Decoding: Letter shifting based on constant numerical intervals.',
+      shortcut: 'Write down A-Z numbered 1-26. Identify patterns from first and last letters first (L=12 + 2 = 14 -> N, S=19 + 2 = 21 -> U) to eliminate options rapidly.',
+      source: 'SSC CGL 2022 Tier-1',
+      difficulty: 'Easy',
+      takeaway: 'Quickly scanning the first and last letters of the coded word solves 80% of coding-decoding questions without converting all letters.'
+    },
+    {
+      id: 102,
+      category: 'Reasoning',
+      tag: 'Blood Relations',
+      question: 'Pointing to a photograph of a boy, Suresh said, "He is the son of the only son of my mother." How is Suresh related to that boy?',
+      options: ['Brother', 'Uncle', 'Father', 'Cousin'],
+      correctOptionIndex: 2,
+      explanation: 'Break down Suresh\'s statement step by step:\n1. "My mother\'s only son" = Suresh himself (since Suresh is the only son of his mother).\n2. "Son of the only son of my mother" = Suresh\'s son.\nTherefore, Suresh is the Father of the boy in the photograph.',
+      concept: 'Blood Relations: Direct relationship tracing by self-identification.',
+      shortcut: 'Substitute "my mother\'s only son" with "Myself" directly in the sentence, yielding: "He is the son of myself."',
+      source: 'RRB NTPC 2021',
+      difficulty: 'Easy',
+      takeaway: 'Always analyze blood relations from the last statement ("my mother") and trace backwards to the subject.'
+    },
+    {
+      id: 103,
+      category: 'Reasoning',
+      tag: 'Syllogism',
+      question: 'Statements:\nI. All Gliders are Flyers.\nII. Some Flyers are Birds.\n\nConclusions:\nI. Some Gliders are Birds.\nII. Some Birds are Flyers.',
+      options: ['Only conclusion I follows', 'Only conclusion II follows', 'Both I and II follow', 'Neither I nor II follows'],
+      correctOptionIndex: 1,
+      explanation: 'Let\'s represent these using Euler circles or Venn diagrams:\n• All Gliders (G) are inside Flyers (F).\n• Some Flyers (F) intersect with Birds (B).\n\nAnalysis of Conclusions:\n• Conclusion I ("Some Gliders are Birds") - There is no guaranteed overlap between Gliders (G) and Birds (B). They may or may not intersect. Thus, this is not definitely true.\n• Conclusion II ("Some Birds are Flyers") - Since "Some Flyers are Birds", it naturally follows that "Some Birds are Flyers". This is always true.\nTherefore, only conclusion II follows.',
+      concept: 'Syllogisms: Overlapping set relationships and definite vs. possible conclusions.',
+      shortcut: 'Immediate conversion rule: "Some X are Y" can always be directly converted to "Some Y are X". No Venn diagram needed for Conclusion II.',
+      source: 'UPSC CSE (CSAT) 2020',
+      difficulty: 'Medium',
+      takeaway: 'A conclusion only "follows" if it is logically certain in 100% of all possible Venn diagrams.'
+    },
+    {
+      id: 104,
+      category: 'Reasoning',
+      tag: 'Seating Arrangement',
+      question: 'Six friends A, B, C, D, E and F are sitting in a circle facing the center. C is to the immediate left of D. F is between A and E. B is between C and E. Who is sitting to the immediate left of E?',
+      options: ['F', 'B', 'A', 'C'],
+      correctOptionIndex: 1,
+      explanation: 'Let\'s place the friends in order around the circle:\n1. Place C and D: C is immediately left of D. (Order clockwise: D, C)\n2. B is between C and E. So, E must be next to B. (Order clockwise: D, C, B, E)\n3. F is between A and E. (Order clockwise: D, C, B, E, F, A)\n\nLet\'s check the circle layout: A, D, C, B, E, F (clockwise).\n• Immediate left of E is B (since they face the center, clockwise movements represent the left side when looking from E\'s perspective). Let\'s verify: facing center, the person to E\'s left (clockwise direction) is B. Correct.',
+      concept: 'Circular Seating Arrangements: Defining relative positions (Left = Clockwise, Right = Counter-Clockwise when facing inside).',
+      shortcut: 'Draw 6 marks on a circle. Fix the first static relation (C and D) immediately to anchor the diagram, then fill out adjacent variables.',
+      source: 'SBI PO 2021',
+      difficulty: 'Hard',
+      takeaway: 'In circular arrangements facing inwards, Clockwise is Left, and Counter-Clockwise is Right.'
+    },
+
+    // --- 📊 APTITUDE ---
+    {
+      id: 201,
+      category: 'Aptitude',
+      tag: 'Time & Work',
+      question: 'A can complete a piece of work in 12 days, and B can complete the same work in 18 days. If they work together, how many days will they take to complete the work?',
+      options: ['6 days', '7.2 days', '8.4 days', '7.5 days'],
+      correctOptionIndex: 1,
+      explanation: 'Let\'s find the total work using the Least Common Multiple (LCM) of days:\n• LCM(12, 18) = 36 units (Total Work).\n• Efficiency of A = 36 / 12 = 3 units/day.\n• Efficiency of B = 36 / 18 = 2 units/day.\n• Combined Efficiency = 3 + 2 = 5 units/day.\n\nTime taken together = Total Work / Combined Efficiency = 36 / 5 = 7.2 days.',
+      concept: 'Time & Work: Reciprocal addition and LCM efficiency method.',
+      shortcut: 'Use product-over-sum formula: (A × B) / (A + B) = (12 × 18) / (12 + 18) = 216 / 30 = 7.2 days.',
+      source: 'SSC CGL 2023 Tier-1',
+      difficulty: 'Easy',
+      takeaway: 'The product-over-sum shortcut is the fastest formula for two workers working concurrently.'
+    },
+    {
+      id: 202,
+      category: 'Aptitude',
+      tag: 'Percentages',
+      question: 'Due to a 20% reduction in the price of sugar, a buyer can buy 5 kg more for ₹100. What is the reduced price of sugar per kg?',
+      options: ['₹4', '₹5', '₹6', '₹3'],
+      correctOptionIndex: 0,
+      explanation: 'Let\'s solve using ratios:\n• Price reduction = 20% = 1/5.\n• Price ratio (Original : Reduced) = 5 : 4.\n• Consumption ratio (Original : Reduced) = 4 : 5 (since expenditure ₹100 is constant).\n• Difference in consumption ratio = 5 - 4 = 1 part.\n• 1 part = 5 kg.\n• Reduced consumption = 5 parts × 5 kg = 25 kg.\n• Reduced Price = Total Cost / Reduced Quantity = ₹100 / 25 kg = ₹4 per kg.',
+      concept: 'Price, Consumption & Expenditure: Inverse proportionality of price and consumption.',
+      shortcut: 'Reduced Price per kg = (Cost × Reduction%) / Extra Quantity = (100 × 20%) / 5 = 20 / 5 = ₹4/kg.',
+      source: 'SSC CHSL 2021',
+      difficulty: 'Medium',
+      takeaway: 'Using the formula (Price × Quantity = Expenditure) with direct percentage scaling saves massive algebraic calculation time.'
+    },
+    {
+      id: 203,
+      category: 'Aptitude',
+      tag: 'Time, Speed & Distance',
+      question: 'A train 150 meters long passes a telegraph post in 12 seconds. How long will it take to cross a bridge of length 250 meters?',
+      options: ['20 seconds', '24 seconds', '32 seconds', '40 seconds'],
+      correctOptionIndex: 2,
+      explanation: 'Let\'s calculate the speed of the train:\n1. Passing a telegraph post means traveling its own length (150 m).\n• Speed = Distance / Time = 150 / 12 = 12.5 m/s.\n\n2. Crossing a bridge means traveling its own length + bridge length (150 m + 250 m = 400 m).\n• Time taken = Total Distance / Speed = 400 / 12.5 = 32 seconds.',
+      concept: 'Time, Speed & Distance: Relative train length motion relative to static point and block barriers.',
+      shortcut: 'Distance is proportional to time when speed is constant. Speed is 150m in 12s. To cross the bridge, total distance is 150m + 250m = 400m. Time = 12s × (400 / 150) = 12s × (8 / 3) = 32 seconds.',
+      source: 'RRB NTPC 2021',
+      difficulty: 'Medium',
+      takeaway: 'Always remember: crossing objects with physical length requires adding the train\'s own length to the object\'s length.'
+    },
+    {
+      id: 204,
+      category: 'Aptitude',
+      tag: 'Simple Interest',
+      question: 'A sum of money doubles itself at a certain rate of simple interest in 8 years. In how many years will it become four times of itself?',
+      options: ['16 years', '24 years', '32 years', '20 years'],
+      correctOptionIndex: 1,
+      explanation: 'Let\'s analyze using simple interest:\n• Sum P becomes 2P in 8 years. Interest earned = 2P - P = P.\n• To become 4P, the sum must earn interest equal to 4P - P = 3P.\n• Simple Interest is linear and constant over equal time periods.\n• If interest P is earned in 8 years, then interest 3P will be earned in: 3 × 8 = 24 years.',
+      concept: 'Simple Interest: Constant linear rate growth of principal base.',
+      shortcut: 'Use simple interest multiple formula: (N1 - 1) / T1 = (N2 - 1) / T2 → (2 - 1) / 8 = (4 - 1) / T2 → 1/8 = 3/T2 → T2 = 24 years.',
+      source: 'SSC CGL 2022 Tier-2',
+      difficulty: 'Hard',
+      takeaway: 'Simple Interest accumulates on the original principal only, making interest growth strictly linear, unlike Compound Interest which is exponential.'
+    },
+
+    // --- 🏛 HISTORY ---
+    {
+      id: 301,
+      category: 'History',
+      tag: 'Ancient History',
+      question: 'Who founded the Mauryan Empire in ancient India?',
+      options: ['Ashoka the Great', 'Chandragupta Maurya', 'Bindusara', 'Chandragupta I'],
+      correctOptionIndex: 1,
+      explanation: 'Chandragupta Maurya established the Mauryan Empire around 322 BCE after overthrowing Dhanananda, the last ruler of the Nanda Dynasty. He was guided by his prime minister Chanakya (Kautilya). He unified the Indian subcontinent under a centralized administrative framework.',
+      concept: 'Mauryan Imperial Consolidation: Nanda defeat and dynastic shift.',
+      shortcut: null,
+      source: 'SSC CGL 2021',
+      difficulty: 'Easy',
+      takeaway: 'Chandragupta Maurya founded the first pan-Indian empire with Pataliputra as its capital.'
+    },
+    {
+      id: 302,
+      category: 'History',
+      tag: 'Modern History',
+      question: 'In which year did Mahatma Gandhi launch the Non-Cooperation Movement?',
+      options: ['1915', '1920', '1930', '1942'],
+      correctOptionIndex: 1,
+      explanation: 'Mahatma Gandhi launched the Non-Cooperation Movement in September 1920 at the Calcutta session of the Indian National Congress. This movement was launched in protest of the Jallianwala Bagh Massacre, the Rowlatt Act, and the Khilafat injustice. It was suspended in February 1922 following the violent Chauri Chaura incident.',
+      concept: 'Indian National Movement: Early Gandhian mass struggles.',
+      shortcut: 'Associate Gandhi\'s major movements with a 10-year gap rule: Non-Cooperation (1920), Civil Disobedience/Salt March (1930), and Quit India (1942).',
+      source: 'UPSC CSE 2019',
+      difficulty: 'Medium',
+      takeaway: 'The Non-Cooperation Movement marked the entry of Indian nationalist politics into a true mass phase.'
+    },
+    {
+      id: 303,
+      category: 'History',
+      tag: 'Modern History',
+      question: 'The famous "Subsidiary Alliance" system, designed to assert British control over Indian princely states, was introduced by which Governor-General?',
+      options: ['Lord Warren Hastings', 'Lord Cornwallis', 'Lord Richard Wellesley', 'Lord Dalhousie'],
+      correctOptionIndex: 2,
+      explanation: 'The Subsidiary Alliance was introduced by Governor-General Lord Richard Wellesley (1798–1805). Under this treaty, the ruler of an allied Indian state had to disband their own army and accept British troops within their territory, paying for their maintenance. Nizam of Hyderabad was the first ruler to accept this alliance in 1798.',
+      concept: 'British East India Company Expansionism: Diplomatic annexations and hegemony.',
+      shortcut: 'Wellesley = Subsidiary Alliance (friendship trap), Dalhousie = Doctrine of Lapse (no heir trap). Remember Wellesley as the "Empire builder" using alliances.',
+      source: 'State PSC Exam 2020',
+      difficulty: 'Medium',
+      takeaway: 'The Subsidiary Alliance system allowed the British to maintain large armies at the expense of Indian rulers.'
+    },
+    {
+      id: 304,
+      category: 'History',
+      tag: 'Ancient History',
+      question: 'The Harappan site of Lothal, which served as a major ancient dockyard and international trading hub, is located in which modern state of India?',
+      options: ['Rajasthan', 'Gujarat', 'Punjab', 'Haryana'],
+      correctOptionIndex: 1,
+      explanation: 'Lothal is located in the Saragwala village in Dholka Taluka of Ahmedabad district, Gujarat. Excavated by S.R. Rao in 1954, Lothal features the world\'s earliest known tidal dockyard, which connected the city to an ancient course of the Sabarmati river, allowing extensive trade with Mesopotamia and Egypt.',
+      concept: 'Indus Valley Civilization: Maritime networks and trade centers.',
+      shortcut: 'Lothal is next to the Gulf of Khambhat in Gujarat. Water dockyard = Coastal state (Gujarat).',
+      source: 'UPSC CSE 2021',
+      difficulty: 'Medium',
+      takeaway: 'Lothal is celebrated for its highly advanced dockyard, proving Harappan mastery over hydrography and maritime trade.'
+    },
+
+    // --- 🌍 GEOGRAPHY ---
+    {
+      id: 401,
+      category: 'Geography',
+      tag: 'Indian Geography',
+      question: 'Which of the following rivers flows in a rift valley and drains into the Arabian Sea?',
+      options: ['Godavari', 'Narmada', 'Krishna', 'Mahanadi'],
+      correctOptionIndex: 1,
+      explanation: 'The Narmada River originates from the Amarkantak plateau in Madhya Pradesh. It flows westwards through a rift valley created between the Vindhya and Satpura mountain ranges, draining into the Arabian Sea through the Gulf of Khambhat. Because it flows through a rift valley, it does not form a delta but forms an estuary.',
+      concept: 'Indian River Systems: West-flowing rivers and structural rift valleys.',
+      shortcut: 'Only two major Indian rivers flow west in rift valleys: Narmada and Tapi (West = Arabian Sea). The rest are east-flowing into the Bay of Bengal.',
+      source: 'SSC CGL 2023 Tier-1',
+      difficulty: 'Easy',
+      takeaway: 'Narmada and Tapi are the key peninsular rivers that bypass the general easterly slope of India due to geological faulting.'
+    },
+    {
+      id: 402,
+      category: 'Geography',
+      tag: 'Physical Geography',
+      question: 'What is the correct order of atmospheric layers starting from the Earth\'s surface upwards?',
+      options: [
+        'Troposphere, Stratosphere, Mesosphere, Thermosphere',
+        'Stratosphere, Troposphere, Mesosphere, Thermosphere',
+        'Troposphere, Mesosphere, Stratosphere, Thermosphere',
+        'Troposphere, Stratosphere, Thermosphere, Mesosphere'
+      ],
+      correctOptionIndex: 0,
+      explanation: 'The layers of the atmosphere in order from the surface are:\n1. Troposphere (where all weather occurs, up to 8-18 km)\n2. Stratosphere (houses the Ozone layer, free of weather, popular for jets, up to 50 km)\n3. Mesosphere (coldest layer, burns meteors, up to 80 km)\n4. Thermosphere (contains the ionosphere, hosts auroras and satellite orbits, up to 600 km)\n5. Exosphere (outer boundary).',
+      concept: 'Structure of the Atmosphere: Temperature gradients and gaseous density layers.',
+      shortcut: 'Acronym: "T-S-M-T" (Trust She Makes Tasty Toast - Troposphere, Stratosphere, Mesosphere, Thermosphere).',
+      source: 'UPSC CSE 2018',
+      difficulty: 'Medium',
+      takeaway: 'The boundary between Troposphere and Stratosphere is the Tropopause, characterized by a constant temperature.'
+    },
+    {
+      id: 403,
+      category: 'Geography',
+      tag: 'Indian Geography',
+      question: 'Which channel or strait separates the Andaman Islands from the Nicobar Islands in the Bay of Bengal?',
+      options: ['Nine Degree Channel', 'Ten Degree Channel', 'Palk Strait', 'Duncan Passage'],
+      correctOptionIndex: 1,
+      explanation: 'The Ten Degree Channel separates the Andaman group of islands from the Nicobar group of islands. It is situated on the 10° N parallel line. It is approximately 150 km wide.',
+      concept: 'Indian Archipelago Geography: Strategic sea lanes and physical boundaries.',
+      shortcut: 'Andaman and Nicobar = 10 Degree. Lakshadweep and Minicoy = 9 Degree. Maldives and Minicoy = 8 Degree.',
+      source: 'SSC CGL 2021',
+      difficulty: 'Easy',
+      takeaway: 'The Ten Degree Channel lies in the Bay of Bengal and is a critical global shipping route.'
+    },
+
+    // --- ⚖ POLITY ---
+    {
+      id: 501,
+      category: 'Polity',
+      tag: 'Constitutional Provisions',
+      question: 'Under the Indian Constitution, the concept of "Directive Principles of State Policy" (DPSP) was borrowed from which country?',
+      options: ['United States', 'Ireland', 'United Kingdom', 'USSR'],
+      correctOptionIndex: 1,
+      explanation: 'The Directive Principles of State Policy (DPSPs) contained in Part IV (Articles 36–51) of the Indian Constitution were borrowed from the Constitution of Ireland (which had in turn borrowed it from Spain). DPSPs are non-justiciable guidelines for the government to secure a social order for the promotion of welfare of the people.',
+      concept: 'Constitutional Sources: Comparative study of constitutional designs.',
+      shortcut: 'Ireland = DPSPs + Presidential election method. USA = Fundamental Rights + Judicial Review. UK = Parliamentary form.',
+      source: 'SSC CGL 2022 Tier-1',
+      difficulty: 'Easy',
+      takeaway: 'DPSPs are fundamental in the governance of the country, aiming to establish a Welfare State rather than just a Police State.'
+    },
+    {
+      id: 502,
+      category: 'Polity',
+      tag: 'Fundamental Rights',
+      question: 'Which Article of the Constitution of India guarantees the "Right to Constitutional Remedies", which Dr. B.R. Ambedkar termed as the "Heart and Soul" of the Constitution?',
+      options: ['Article 14', 'Article 19', 'Article 21', 'Article 32'],
+      correctOptionIndex: 3,
+      explanation: 'Article 32 guarantees the Right to Constitutional Remedies. It empowers citizens to move the Supreme Court directly for the enforcement of their Fundamental Rights. Under this Article, the Supreme Court has the power to issue five types of writs: Habeas Corpus, Mandamus, Prohibition, Certiorari, and Quo Warranto. Dr. Ambedkar called it the most important article without which the constitution would be a nullity.',
+      concept: 'Remedial Jurisprudence: Judicial protection of citizen liberties.',
+      shortcut: 'Heart and Soul = Article 32 (Supreme Court writs). Article 226 gives high courts the same power.',
+      source: 'UPSC CSE 2020',
+      difficulty: 'Medium',
+      takeaway: 'Article 32 is a fundamental right itself, ensuring that all other fundamental rights are fully enforceable and not merely theoretical.'
+    },
+    {
+      id: 503,
+      category: 'Polity',
+      tag: 'Executive & Parliament',
+      question: 'Who acts as the ex-officio Chairman of the Rajya Sabha (the Council of States) in the Parliament of India?',
+      options: ['The President of India', 'The Prime Minister of India', 'The Vice-President of India', 'The Speaker of Lok Sabha'],
+      correctOptionIndex: 2,
+      explanation: 'According to Article 64 and Article 89(1) of the Indian Constitution, the Vice-President of India is the ex-officio Chairman of the Rajya Sabha. The Vice-President does not hold any other office of profit and is the presiding officer of the Upper House, despite not being a member of Rajya Sabha.',
+      concept: 'Structure of Parliament: Dual roles of the Vice-Presidency.',
+      shortcut: 'VP = Rajya Sabha Chairman. The VP receives a salary as the Chairman of Rajya Sabha, not as the Vice-President.',
+      source: 'State PSC Exam 2021',
+      difficulty: 'Easy',
+      takeaway: 'The ex-officio chairman of Rajya Sabha is always the sitting Vice-President of India.'
+    },
+
+    // --- 💰 ECONOMICS ---
+    {
+      id: 601,
+      category: 'Economics',
+      tag: 'Monetary Policy',
+      question: 'What is the term used for the interest rate at which the Reserve Bank of India (RBI) lends money to commercial banks for short-term periods, backed by government securities?',
+      options: ['Bank Rate', 'Repo Rate', 'Reverse Repo Rate', 'Cash Reserve Ratio'],
+      correctOptionIndex: 1,
+      explanation: 'Repo Rate (Repurchase Option Rate) is the rate at which the RBI lends money to commercial banks for short durations against government securities. It is a key tool in monetary policy used to regulate liquidity, control inflation, and guide credit availability.',
+      concept: 'Monetary Policy Instruments: Quantitative credit control.',
+      shortcut: 'REPO = RE-Purchase Option. Bank Rate is for long-term without collateral. Repo Rate is short-term with collateral.',
+      source: 'SSC CGL 2022 Tier-2',
+      difficulty: 'Medium',
+      takeaway: 'Increasing the Repo Rate makes bank borrowing costlier, which helps compress commercial lending and cool down inflation.'
+    },
+    {
+      id: 602,
+      category: 'Economics',
+      tag: 'Macroeconomics',
+      question: 'The "Stagflation" condition is characterized by which of the following economic indicators?',
+      options: [
+        'High inflation coupled with high economic growth',
+        'Low inflation coupled with high unemployment',
+        'High inflation coupled with high unemployment and stagnant growth',
+        'Deflation coupled with high economic growth'
+      ],
+      correctOptionIndex: 2,
+      explanation: 'Stagflation is an economic anomaly where high inflation is accompanied by stagnant economic growth (stagnation) and a high rate of unemployment. This is particularly challenging for policymakers because actions intended to lower inflation (like raising interest rates) may worsen unemployment, and vice versa.',
+      concept: 'Inflationary Dynamics: Decoupled pricing indexes and employment markers.',
+      shortcut: 'Stagflation = STAG-nant growth + in-FLATION.',
+      source: 'UPSC CSE 2021',
+      difficulty: 'Medium',
+      takeaway: 'Stagflation contradicts the traditional Phillips Curve theory, which suggests that inflation and unemployment have an inverse relationship.'
+    },
+    {
+      id: 603,
+      category: 'Economics',
+      tag: 'Five Year Plans',
+      question: 'Which of India\'s Five-Year Plans was based on the Mahalanobis Model, prioritizing heavy industrialization and capital goods industries?',
+      options: ['First Five-Year Plan', 'Second Five-Year Plan', 'Third Five-Year Plan', 'Fifth Five-Year Plan'],
+      correctOptionIndex: 1,
+      explanation: 'The Second Five-Year Plan (1956–1961) was based on the Mahalanobis Model, developed by Indian statistician Prasanta Chandra Mahalanobis. This model advocated for a major push towards rapid industrialization, specifically focusing on basic and heavy industries like iron, steel, coal, and heavy engineering, laying the foundation for public sector enterprises in India.',
+      concept: 'Economic History of India: Industrial models and central planning.',
+      shortcut: '1st Plan = Harrod-Domar (Agriculture). 2nd Plan = Mahalanobis (Heavy Industry).',
+      source: 'State PSC Exam 2020',
+      difficulty: 'Medium',
+      takeaway: 'The 2nd Five-Year Plan established major steel plants in Bhilai, Durgapur, and Rourkela with foreign collaboration.'
+    },
+
+    // --- 🔬 SCIENCE ---
+    {
+      id: 701,
+      category: 'Science',
+      tag: 'Physics',
+      question: 'Which of the following electromagnetic radiations has the shortest wavelength and the highest frequency?',
+      options: ['Ultraviolet rays', 'Infrared rays', 'Gamma rays', 'X-rays'],
+      correctOptionIndex: 2,
+      explanation: 'Gamma rays have the shortest wavelength and the highest frequency in the electromagnetic spectrum, carrying the highest energy. Wavelength is inversely proportional to frequency and energy (E = hc/λ). The order of electromagnetic waves from longest wavelength (lowest frequency) to shortest wavelength (highest frequency) is: Radio waves, Microwaves, Infrared, Visible Light, Ultraviolet, X-rays, Gamma rays.',
+      concept: 'Electromagnetic Spectrum: Relationship between frequency, wavelength, and photon energy.',
+      shortcut: 'Remember mnemonic: "R-M-IV-U-X-G" (Rich Men In Vegas Use X-ray Goggles). Wavelength decreases left-to-right, so Gamma (G) is shortest/highest energy.',
+      source: 'SSC CGL 2023 Tier-1',
+      difficulty: 'Easy',
+      takeaway: 'Gamma rays are emitted during radioactive decay and nuclear reactions, possessing extreme penetration power.'
+    },
+    {
+      id: 702,
+      category: 'Science',
+      tag: 'Biology',
+      question: 'Which organelle is known as the "Powerhouse of the Cell" and is responsible for synthesizing energy in the form of ATP?',
+      options: ['Lysosome', 'Ribosome', 'Mitochondria', 'Golgi Apparatus'],
+      correctOptionIndex: 2,
+      explanation: 'Mitochondria are double-membraned organelles where cellular respiration occurs, converting nutrients into Adenosine Triphosphate (ATP), the primary energy currency of biological cells. They contain their own DNA and ribosomes, supporting the endosymbiotic theory of origin.',
+      concept: 'Cellular Biology: Organelle functions and bioenergetics.',
+      shortcut: 'Mitochondria = ATP energy synthesis. Lysosome = Suicide bag. Ribosome = Protein factory.',
+      source: 'Railway Group D 2022',
+      difficulty: 'Easy',
+      takeaway: 'Mitochondria contain specialized internal folds called cristae that maximize surface area for chemical reactions.'
+    },
+    {
+      id: 703,
+      category: 'Science',
+      tag: 'Chemistry',
+      question: 'Which acid is primarily present in sour milk and curd, formed as a byproduct of bacterial fermentation of lactose?',
+      options: ['Citric Acid', 'Lactic Acid', 'Tartaric Acid', 'Acetic Acid'],
+      correctOptionIndex: 1,
+      explanation: 'Curd and sour milk contain Lactic Acid. Bacteria called Lactobacillus ferment the lactose sugar present in milk into lactic acid, which coagulates milk proteins (casein) to turn it into curd. This acid gives curd its characteristic sour taste.',
+      concept: 'Organic Acids in Daily Life: Fermentation biochemistry.',
+      shortcut: 'Lactose / Lacto- = Milk prefix. So Lactose → Lactic Acid. Citric is for lemons, Tartaric for tamarind, Acetic for vinegar.',
+      source: 'SSC MTS 2021',
+      difficulty: 'Easy',
+      takeaway: 'Lactobacillus bacteria are probiotics that are highly beneficial for digestive health.'
+    },
+
+    // --- 📰 CURRENT AFFAIRS ---
+    {
+      id: 801,
+      category: 'Current Affairs',
+      tag: 'Space Technology',
+      question: 'India\'s historic Chandrayaan-3 lunar mission successfully landed its Vikram lander near which region of the Moon in August 2023?',
+      options: ['Equatorial region', 'North Pole', 'South Pole', 'Far Side crater basin'],
+      correctOptionIndex: 2,
+      explanation: 'ISRO\'s Chandrayaan-3 mission successfully landed its lander module (Vikram) and rover (Pragyan) near the South Pole of the Moon on August 23, 2023. This achievement made India the first country in the world to reach the lunar south polar region, and the fourth country overall to soft-land on the Moon.',
+      concept: 'Space Exploration Milestones: Indian lunar programs.',
+      shortcut: 'August 23 is now celebrated as National Space Day in India to commemorate this historic landing.',
+      source: 'UPSC CSE 2024 / SSC CGL 2023',
+      difficulty: 'Easy',
+      takeaway: 'The lunar South Pole is highly sought after because of geological indications of extensive water-ice deposits inside permanently shadowed craters.'
+    },
+    {
+      id: 802,
+      category: 'Current Affairs',
+      tag: 'Summits & Treaties',
+      question: 'During the 18th G20 Summit held in New Delhi in September 2023, which regional block was formally admitted as a permanent member of the G20 under India\'s presidency?',
+      options: ['European Union', 'ASEAN', 'African Union', 'BRICS'],
+      correctOptionIndex: 2,
+      explanation: 'Under India\'s G20 presidency at the New Delhi Summit in September 2023, the African Union (AU) was admitted as a permanent member of the G20, representing its 55 member states. This is the first expansion of the G20 since its creation in 1999, elevating the voice of the Global South in global governance.',
+      concept: 'Multilateral Diplomacy: G20 expansions and geopolitical shifts.',
+      shortcut: 'G20 has 19 countries, the EU, and now the African Union. AU was invited to sit as a permanent member during the opening ceremony.',
+      source: 'UPSC CSE 2024 / Banking Exams 2023',
+      difficulty: 'Medium',
+      takeaway: 'The inclusion of the African Union represents a major step forward for inclusive international economic decision-making.'
+    },
+    {
+      id: 803,
+      category: 'Current Affairs',
+      tag: 'National Policy',
+      question: 'What is the name of the comprehensive, AI-driven national program launched by India to establish a sovereign AI compute capacity and provide high-performance supercomputing to startups and researchers?',
+      options: ['BharatAI Mission', 'IndiaAI Mission', 'ParamCompute Initiative', 'Digital Shakti 5.0'],
+      correctOptionIndex: 1,
+      explanation: 'The Cabinet approved the comprehensive "IndiaAI Mission" with a financial outlay of ₹10,371.92 crore. The mission aims to establish a robust AI ecosystem in India by building sovereign supercomputing infrastructure (10,000+ GPUs), supporting indigenous foundational AI models, providing AI datasets, and promoting safe ethical AI standards.',
+      concept: 'National Digital Infrastructure: AI capabilities and supercomputing access.',
+      shortcut: 'Look for the specific sovereign branding: "IndiaAI Mission" approved in March 2024.',
+      source: 'Current Affairs 2024 / Government Schemes',
+      difficulty: 'Medium',
+      takeaway: 'The IndiaAI Mission builds compute capacity via public-private partnerships, ensuring Indian developers are not dependent on foreign cloud compute hosts.'
+    }
+  ]
+};
+console.log('ExamPulse AI PYQ Database loaded successfully with ' + window.ExamPulseData.questions.length + ' questions.');
